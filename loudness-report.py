@@ -73,7 +73,7 @@ def main(begintime):
             bytesPerSample = 16
         elif bytesPerSample == 3:
             bytesPerSample = 24
-        elif bytesPerSample == 4:
+        elif bytesPerSample == 4: #Still a problem with it erroneusly reading bit-depth at 24 bits
             bytesPerSample = 24
         else:
             bytesPerSample = "error"
