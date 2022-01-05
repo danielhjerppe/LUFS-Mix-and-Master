@@ -1,0 +1,9 @@
+cffi==1.15.0
+ffmpeg==1.4
+future==0.18.2
+numpy==1.21.2
+pycparser==2.20
+pydub==0.25.1
+pyloudnorm==0.1.0
+scipy==1.7.1
+SoundFile==0.10.3.post1
