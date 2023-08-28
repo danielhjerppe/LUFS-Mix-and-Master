@@ -9,7 +9,7 @@ import datetime
 import pprint
 
 
-def list_wav_files(path):
+def list_wav_files(path):  # List all wav-files in working_path.
     wav_files = []
     print("\nFound the following wav-files:\n")
 
@@ -88,16 +88,10 @@ def main(start):  # Main orchestrator. Takes input begintime to calculate time f
         max_peak = sound.max_dBFS
         frames_per_second = sound.frame_rate
         bytes_per_sample = sound.sample_width
-        if bytes_per_sample == 1:
-            bytes_per_sample = 8
-        elif bytes_per_sample == 2:
-            bytes_per_sample = 16
-        elif bytes_per_sample == 3:
-            bytes_per_sample = 24
-        elif bytes_per_sample == 4:  # Still a problem with it erroneusly reading bit-depth at 24 bits
-            bytes_per_sample = 24
-        else:
-            bytes_per_sample = "error"
+        try:
+            bytes_per_sample = bytes_per_sample * 8
+        except ValueError:
+            bytes_per_sample = "N/A"
 
         wav_dict = {
             "name": file,
@@ -108,7 +102,7 @@ def main(start):  # Main orchestrator. Takes input begintime to calculate time f
         }
         list_of_dicts.append(wav_dict)
 
-    print(f"Items on list_of_dicts: {len(list_of_dicts)}\n")
+    print(f"\nItems on list_of_dicts: {len(list_of_dicts)}\n")
     pprint.pprint(list_of_dicts)
 
     report_writer(tiedostonimi, list_of_dicts, start)  # Writes the report. Inputs: filename, audiodata(dict) and start
